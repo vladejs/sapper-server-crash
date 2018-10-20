@@ -1,0 +1,89 @@
+<section
+    class="plan {selected ? 'selected' : ''}"
+    on:click="toggle()"
+>
+    <p class="name">
+        Go {name}
+    </p>
+
+    <p class="text hide-xs">Start for</p>
+
+    <p class="price">
+        <span class="curr">$</span>
+        {price}
+    </p>
+
+    <p class="sign">Sign up</p>
+</section>
+
+<style>
+    .plan {
+        margin: 0;
+        border-radius: 4px;
+        border: 1px solid #0b2e13;
+        background-color: #fff;
+        padding: 12px;
+        /*max-width: 210px;*/
+        max-height: 200px;
+        cursor: pointer;
+    }
+
+    .plan:hover {
+        background-color: #58cc5d;
+        border: 1px solid #58cc5d;
+    }
+
+    .plan:hover p {
+        color: #fff;
+    }
+
+    .plan p {
+        font-family: Roboto, monospace;
+        font-size: 14px;
+        text-align: center;
+        margin: 0;
+    }
+
+    .name {
+        font-weight: bold;
+    }
+
+    .plan .price {
+        font-size: 25px;
+    }
+
+    .price .curr {
+        font-size: 12px;
+        margin-right: -5px;
+    }
+
+    .plan.selected {
+        border: none;
+        background-color: #58cc5d;
+    }
+
+    .plan.selected p {
+        color: #fff;
+    }
+    
+    @media (max-width: 420px) {
+        .hide-xs {
+            display: none;
+        }
+    }
+</style>
+
+<script>
+    export default {
+      methods: {
+        toggle() {
+          const { selected, type } = this.get();
+          const value = selected ? null : 'selected';
+
+          if ( value ) {
+            this.fire('selected', { plan: type });
+          }
+        }
+      }
+    }
+</script>

@@ -1,0 +1,115 @@
+<header id="header" class="header">
+    <div class="container" id="nav-container">
+        <h1 class="logo">
+            <a href="/">
+                <img src="images/logo.svg" alt=""/>
+                <span class="text">Logo</span>
+            </a>
+        </h1><!--//logo-->
+        <nav class="main-nav navbar navbar-right navbar-expand-md">
+            <button class="navbar-toggler collapsed" type="button" data-toggle="collapse"
+                    data-target="#navbar-collapse">
+                <span> </span>
+                <span> </span>
+                <span> </span>
+            </button>
+            <div id="navbar-collapse" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li
+                        class:active="segment == null"
+                        class="nav-item">
+                        <a
+                            class="nav-link" href="/">
+                            Home
+                        </a>
+                    </li>
+                    <li
+                            class:active="segment === 'features'"
+                            class="nav-item">
+                        <a class="nav-link" href="features">Features</a>
+                    </li>
+                    <!--<li class="nav-item"><a class="nav-link" href="stories.html">Stories</a></li>-->
+                    <!--<li class="nav-item"><a class="nav-link" href="pricing">Pricing</a></li>-->
+                    <!-- <li class="nav-item dropdown">
+                        <a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="javascript:void;">More <i class="fas fa-angle-down"></i></a>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <a class="dropdown-item" href="about.html">About Us</a>
+                            <a class="dropdown-item" href="story-single.html">Customer Story Single</a>
+                            <a class="dropdown-item" href="blog.html">Blog</a>
+                            <a class="dropdown-item" href="blog-single.html">Blog Single</a>
+                            <a class="dropdown-item" href="support.html">Support Center</a>
+                            <a class="dropdown-item" href="career.html">Career</a>
+                            <a class="dropdown-item" href="job-single.html">Job Single</a>
+                            <a class="dropdown-item" href="contact.html">Contact</a>
+                        </div>
+                    </li> --><!--//dropdown-->
+                    {#if $user}
+                    <li class="nav-item" class:active="segment === 'dashboard'">
+                        <a
+                            class="nav-link login-trigger"
+                            href="dashboard"
+                        >
+                            Dashboard
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a
+                            class="nav-link login-trigger"
+                            href="javascript:"
+                            on:click="$logout()">
+                            Log out
+                        </a>
+                    </li>
+                    {:else}
+                    <li class="nav-item"><a class="nav-link login-trigger" href="javascript:" data-toggle="modal"
+                                            data-target="#login-modal">Log in</a></li>
+                    <li class="nav-item nav-item-cta last"><a class="btn-signup" href="javascript:" data-toggle="modal"
+                                                              data-target="#signup-modal">Sign Up</a></li>
+                    {/if}
+
+                </ul><!--//nav-->
+            </div><!--//navabr-collapse-->
+        </nav><!--//main-nav-->
+    </div><!--//container-->
+</header><!--//header-->
+
+<style>
+    .logo {
+        margin-top: 20px;
+    }
+
+    .logo img {
+        min-width: 32px;
+        width: 32px;
+        margin-top: -4px;
+    }
+
+    .logo .text {
+        font-family: "Agency FB", Roboto, monospace;
+        margin-top: 4px;
+        display: inline-block;
+    }
+
+    @media (min-width: 768px) {
+        .navbar {
+            height: 73px;
+        }
+    }
+
+    @media (max-width: 767px) {
+        .navbar {
+            background-color: rgba(34,34,34,.97);
+            z-index: 100;
+        }
+
+        #nav-container {
+            padding: 0;
+            max-width: 100%;
+        }
+
+        .logo {
+            padding-left: 15px;
+        }
+    }
+</style>

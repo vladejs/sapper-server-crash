@@ -1,0 +1,51 @@
+<div id={type} class="element"/>
+<label ref:cardError class="card-errors"/>
+
+<style>
+	.element {
+		padding-top: 14px;
+		padding-left: 40px;
+	}
+</style>
+
+<script>
+  import loadStripe, { createCardElement } from '../_helpers/stripe'
+
+  export default {
+    oncreate() {
+      const { loadingLabel, errorLabel } = this.get();
+      this.fire('change', { error: loadingLabel });
+
+      if ( !window.Stripe ) {
+        loadStripe(_ => window.stripe
+          ? this.setupCard(window.stripe)
+          : this.fire('change', { error: errorLabel })
+        )
+      } else this.setupCard(window.stripe)
+    },
+
+    methods: {
+      setupCard(stripe) {
+        const { type } = this.get();
+
+        const opts = {
+          classes: {
+            base: 'form-control'
+          }
+        };
+
+        this.card = createCardElement(stripe, type, opts);
+        this.card.mount(`#${type}`);
+
+        this.fire('change', { error: null });
+        this.fire('complete', { card: this.card });
+
+        this.card.on('change', ({ error }) => {
+          const msg = error ? error.message : null;
+          this.fire('change', { error: msg });
+          // message(this.refs.cardMsgError, msg); // Error will be shown in the form above
+        });
+      }
+    }
+  }
+</script>

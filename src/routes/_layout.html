@@ -1,0 +1,44 @@
+<Nav segment={child.segment}/>
+
+    <svelte:component this={child.component} {...child.props}/>
+
+    <Footer/>
+
+    <style>
+        .modal, .modal-signup {
+            padding-right: 0 !important;
+        }
+
+        .plans {
+            margin-bottom: 15px;
+        }
+
+        .modal-signup .modal-header {
+            padding-top: 12px;
+            padding-bottom: 10px;
+            justify-content: left;
+        }
+
+        .modal-signup .modal-body {
+            padding: 0 20px 20px;
+        }
+
+        .modal-signup .modal-body .form-group {
+            max-height: 40px;
+        }
+
+        .modal-signup .modal-body .legal-note {
+            margin-bottom: 5px;
+            text-align: center;
+        }
+    </style>
+
+    <script>
+
+      export default {
+        components: {
+          Nav: '../components/Nav.html',
+          Footer: '../components/Footer.html',
+        },
+      };
+    </script>
